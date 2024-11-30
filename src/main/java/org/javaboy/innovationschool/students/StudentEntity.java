@@ -11,7 +11,7 @@ public class StudentEntity {
     private Long id;
     private String firstName;
     private String lastName;
-    private String profilePicture;
+    private byte[] profilePicture;
     private String email;
     private String phoneNumber;
 
@@ -39,11 +39,11 @@ public class StudentEntity {
         this.lastName = lastName;
     }
 
-    public String getProfilePicture() {
+    public byte[] getProfilePicture() {
         return profilePicture;
     }
 
-    public void setProfilePicture(String profilePicture) {
+    public void setProfilePicture(byte[] profilePicture) {
         this.profilePicture = profilePicture;
     }
 

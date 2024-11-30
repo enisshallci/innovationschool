@@ -1,8 +1,7 @@
 package org.javaboy.innovationschool.students;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +22,18 @@ public class StudentsController {
 
         return studentEntities;
     }
+
+    @GetMapping(path = "/students/{id}")
+    public StudentEntity getById(@PathVariable Long id) {
+
+        return studentsRepository.findById(id).orElse(null);
+    }
+
+    @PostMapping(path = "/students")
+    public StudentEntity save(@RequestBody StudentEntity studentEntity) {
+
+        return studentsRepository.save(studentEntity);
+    }
+
 
 }
