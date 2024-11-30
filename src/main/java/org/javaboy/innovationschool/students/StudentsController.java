@@ -1,28 +1,27 @@
 package org.javaboy.innovationschool.students;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class StudentsController {
 
-    @GetMapping(path = "/students/{id}")
-    public Student getStudent() {
+    private StudentsRepository studentsRepository;
 
-        Student studentModel = new Student();
-        studentModel.setId(12l);
-        studentModel.setFirstName("Enis");
-        studentModel.setLastName("Shallci");
-        studentModel.setProfilePicture(null);
-
-        return studentModel;
+    @Autowired
+    public StudentsController(StudentsRepository studentsRepository) {
+        this.studentsRepository = studentsRepository;
     }
 
-    @PostMapping(path = "/trainings")
-    public String getTraining() {
+    @GetMapping(path = "/students")
+    public List<StudentEntity> findAll() {
 
-        return "Spring Boot and Microservices 2024";
+        List<StudentEntity> studentEntities = studentsRepository.findAll();
+
+        return studentEntities;
     }
 
 }
