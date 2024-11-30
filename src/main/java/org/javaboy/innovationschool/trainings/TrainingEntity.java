@@ -2,18 +2,14 @@ package org.javaboy.innovationschool.trainings;
 
 import jakarta.persistence.*;
 
-@Entity     //Reprezenton tabelen tone te databazes. Per me te manipuluar me databazen tone.
-@Table(name = "trainings")      //Sepse atje e kemi trainings, e ketu TrainingEntity.
+@Entity
+@Table(name = "trainings")
 public class TrainingEntity {
 
-    /*
-        Validime mundemi me bo ketu, por mundemi edhe ne databaze qe me kufizu sa me shume aplikacionin tone.
-        Pra validation checks eshte mire me i pase edhe ne kod edhe ne databaze.
-     */
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)         // i gjeneron vlerat ne menyre automatike.
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String title;
     private String description;
     private double price;
