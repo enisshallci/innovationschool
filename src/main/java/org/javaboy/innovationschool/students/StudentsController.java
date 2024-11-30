@@ -1,32 +1,27 @@
 package org.javaboy.innovationschool.students;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController     //Per me tregu qe eshte RestController, spring boot e interpreton si restController.
+import java.util.List;
+
+@RestController
 public class StudentsController {
 
-    /*
-        Forma e komunikimit te HTTP, ne path /students ne serverin tone do te thirret metoda getStudent()
-        Pra, Spring boot i mappon GET requests ne URL e specifikuar me "/students" me këtë metodë.
-     */
-    @GetMapping(path = "/students/{id}")
-    public Student getStudent() {
+    private StudentsRepository studentsRepository;
 
-        Student studentModel = new Student();
-        studentModel.setId(12l);
-        studentModel.setFirstName("Enis");
-        studentModel.setLastName("Shallci");
-        studentModel.setProfilePicture(null);
-
-        return studentModel;
+    @Autowired
+    public StudentsController(StudentsRepository studentsRepository) {
+        this.studentsRepository = studentsRepository;
     }
 
-    @PostMapping(path = "/trainings")
-    public String getTraining() {
+    @GetMapping(path = "/students")
+    public List<StudentEntity> findAll() {
 
-        return "Spring Boot and Microservices 2024";
+        List<StudentEntity> studentEntities = studentsRepository.findAll();
+
+        return studentEntities;
     }
 
 }
