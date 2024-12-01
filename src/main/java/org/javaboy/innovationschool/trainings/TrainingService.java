@@ -2,10 +2,12 @@ package org.javaboy.innovationschool.trainings;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public interface TrainingService {
 
     List<TrainingEntity>  findAll();
     Optional<TrainingEntity> findById(Long id);
-
+    Set<TrainingEntity> findByName(String title);
+    TrainingEntity save(TrainingEntity trainingEntity);
 }
