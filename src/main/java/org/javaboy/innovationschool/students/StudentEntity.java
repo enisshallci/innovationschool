@@ -10,7 +10,10 @@ public class StudentEntity extends BaseEntity {
 
     @NotNull
     private String firstName;
+
+    @NotNull
     private String lastName;
+
     private byte[] profilePicture;
     private String email;
     private String phoneNumber;

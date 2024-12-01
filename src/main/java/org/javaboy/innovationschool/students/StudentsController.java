@@ -9,17 +9,17 @@ import java.util.Set;
 @RestController
 public class StudentsController {
 
-    private StudentsRepository studentsRepository;
+    private StudentsService studentsService;
 
     @Autowired
-    public StudentsController(StudentsRepository studentsRepository) {
-        this.studentsRepository = studentsRepository;
+    public StudentsController(StudentsService studentsService) {
+        this.studentsService = studentsService;
     }
 
     @GetMapping(path = "/students")
     public List<StudentEntity> findAll() {
 
-        List<StudentEntity> studentEntities = studentsRepository.findAll();
+        List<StudentEntity> studentEntities = studentsService.findAll();
 
         return studentEntities;
     }
@@ -27,19 +27,19 @@ public class StudentsController {
     @GetMapping(path = "/students/{id}")
     public StudentEntity getById(@PathVariable Long id) {
 
-        return studentsRepository.findById(id).orElse(null);
+        return studentsService.findById(id).orElse(null);
     }
 
     @PostMapping(path = "/students")
     public StudentEntity save(@RequestBody StudentEntity studentEntity) {
 
-        return studentsRepository.save(studentEntity);
+        return studentsService.save(studentEntity);
     }
 
     @GetMapping(path = "/students", params = "name")        //tipi i metodes ne HTTP protokollin tone.
     public Set<StudentEntity> findByName(@RequestParam String name) {
 
-        return studentsRepository.findByFirstNameStartingWithIgnoreCase(name);
+        return studentsService.findByName(name);
     }
 
 }
