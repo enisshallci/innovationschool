@@ -11,4 +11,5 @@ public interface StudentsService {
     StudentEntity save(StudentEntity studentEntity);
     StudentEntity update(StudentEntity studentEntity);
     Set<StudentEntity> findByName(String name);
+    void deleteById(Long id);
 }

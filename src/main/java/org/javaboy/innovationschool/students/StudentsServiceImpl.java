@@ -1,7 +1,9 @@
 package org.javaboy.innovationschool.students;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -45,5 +47,18 @@ public class StudentsServiceImpl implements StudentsService{
     public Set<StudentEntity> findByName(String name) {
 
         return studentsRepository.findByFirstNameStartingWithIgnoreCase(name);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+
+        Optional<StudentEntity> studentEntityOptional = studentsRepository.findById(id);
+
+        if (studentEntityOptional.isPresent())
+        {
+            studentsRepository.deleteById(id);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Student with id: " + id + " not found.");
+        }
     }
 }

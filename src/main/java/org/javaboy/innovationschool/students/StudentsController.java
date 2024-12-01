@@ -1,6 +1,7 @@
 package org.javaboy.innovationschool.students;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,6 +32,7 @@ public class StudentsController {
     }
 
     @PostMapping(path = "/students")
+    @ResponseStatus(HttpStatus.CREATED)
     public StudentEntity save(@RequestBody StudentEntity studentEntity) {
 
         return studentsService.save(studentEntity);
@@ -54,6 +56,14 @@ public class StudentsController {
         return studentsService.update(studentEntity);
     }
 
+    //No content kur operacioni eshte kry me sukses, por nuk ka rezultat.
+    @DeleteMapping(path = "/students/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)      // nese eshte kthy me sukses operacioni me na kthy 204. Gjithqka me sukses percaktohet nga kjo.
+    public void delete(@PathVariable Long id) {
 
+        studentsService.deleteById(id);
+    }
+
+    //Nese nuk ka sukses shkon edhe mbishkruhet nga throw te services.
 
 }
