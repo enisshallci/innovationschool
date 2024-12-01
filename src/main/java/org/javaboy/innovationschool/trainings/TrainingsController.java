@@ -6,34 +6,28 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class TrainingsController {
 
-    private TrainingsRepository trainingsRepository;
+    private TrainingService trainingService;
 
     @Autowired
-    public TrainingsController(TrainingsRepository trainingsRepository) {
-        this.trainingsRepository = trainingsRepository;
+    public TrainingsController(TrainingService trainingService) {
+        this.trainingService = trainingService;
     }
 
     @GetMapping(path = "/trainings")
     public List<TrainingEntity> findAll() {
 
-        return trainingsRepository.findAll();
+        return trainingService.findAll();
     }
 
     @GetMapping(path = "/trainings/{id}")
-    public TrainingEntity findById(@PathVariable Long id) {
+    public TrainingEntity getById(@PathVariable Long id) {
 
-        Optional<TrainingEntity> trainingEntityOptional = trainingsRepository.findById(id);
-
-        if (trainingEntityOptional.isPresent()) {
-            return trainingEntityOptional.get();
-        }
-
-        return null;
+        return trainingService.findById(id).orElse(null);
     }
+
 
 }
