@@ -8,6 +8,6 @@ import java.util.Set;
 @Repository
 public interface StudentsRepository extends JpaRepository<StudentEntity, Long> {
 
-    Set<StudentEntity> findByFirstNameStartingWith(String name);    //metode e derivuar.
+    Set<StudentEntity> findByFirstNameStartingWithIgnoreCase(String name);    //metode e derivuar.
 
 }

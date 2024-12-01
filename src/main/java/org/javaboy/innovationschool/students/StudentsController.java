@@ -39,7 +39,7 @@ public class StudentsController {
     @GetMapping(path = "/students", params = "name")        //tipi i metodes ne HTTP protokollin tone.
     public Set<StudentEntity> findByName(@RequestParam String name) {
 
-        return studentsRepository.findByFirstNameStartingWith(name);
+        return studentsRepository.findByFirstNameStartingWithIgnoreCase(name);
     }
 
 
