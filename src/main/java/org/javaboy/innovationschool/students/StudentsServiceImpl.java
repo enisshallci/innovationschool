@@ -36,6 +36,12 @@ public class StudentsServiceImpl implements StudentsService{
     }
 
     @Override
+    public StudentEntity update(StudentEntity studentEntity) {
+
+        return studentsRepository.save(studentEntity);
+    }
+
+    @Override
     public Set<StudentEntity> findByName(String name) {
 
         return studentsRepository.findByFirstNameStartingWithIgnoreCase(name);

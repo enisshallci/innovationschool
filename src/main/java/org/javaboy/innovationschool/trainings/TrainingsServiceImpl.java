@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
-public class TrainingsServiceImpl implements TrainingService {
+public class TrainingsServiceImpl implements TrainingsService {
 
     private TrainingsRepository trainingsRepository;
 

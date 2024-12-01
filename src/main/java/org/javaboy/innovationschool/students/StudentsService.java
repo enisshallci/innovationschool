@@ -9,6 +9,6 @@ public interface StudentsService {
     List<StudentEntity> findAll();
     Optional<StudentEntity> findById(Long id);
     StudentEntity save(StudentEntity studentEntity);
+    StudentEntity update(StudentEntity studentEntity);
     Set<StudentEntity> findByName(String name);
-
 }

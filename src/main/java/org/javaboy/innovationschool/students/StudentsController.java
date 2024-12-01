@@ -42,4 +42,18 @@ public class StudentsController {
         return studentsService.findByName(name);
     }
 
+    /*
+        Nese nuk ia kishum jep Id:, ish shku e kish kriju nje student te ri ne databaze.
+        Pra vime ne perfundim qe kur dojme me bo @PutMapping duhet me i barte te gjitha informatat qysh kane qene. Qe mos
+        mu mbishkru me "null".
+     */
+    @PutMapping(path = "/students/{id}")
+    public StudentEntity update(@RequestBody StudentEntity studentEntity, @PathVariable Long id) {
+
+        studentEntity.setId(id);
+        return studentsService.update(studentEntity);
+    }
+
+
+
 }

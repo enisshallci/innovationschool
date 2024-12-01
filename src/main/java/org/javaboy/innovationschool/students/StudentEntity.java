@@ -11,13 +11,12 @@ public class StudentEntity extends BaseEntity {
     @NotNull
     private String firstName;
 
-    @NotNull
+    @NotNull(message = "Last name must not be null")
     private String lastName;
 
     private byte[] profilePicture;
     private String email;
     private String phoneNumber;
-
 
     public String getFirstName() {
         return firstName;

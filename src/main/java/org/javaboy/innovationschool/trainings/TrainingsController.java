@@ -9,10 +9,10 @@ import java.util.Set;
 @RestController
 public class TrainingsController {
 
-    private TrainingService trainingService;
+    private TrainingsService trainingService;
 
     @Autowired
-    public TrainingsController(TrainingService trainingService) {
+    public TrainingsController(TrainingsService trainingService) {
         this.trainingService = trainingService;
     }
 
