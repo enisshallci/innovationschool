@@ -42,7 +42,4 @@ public class StudentsController {
         return studentsRepository.findByFirstNameStartingWithIgnoreCase(name);
     }
 
-
-
-
 }

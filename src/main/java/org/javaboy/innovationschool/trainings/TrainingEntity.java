@@ -1,27 +1,16 @@
 package org.javaboy.innovationschool.trainings;
 
 import jakarta.persistence.*;
+import org.javaboy.innovationschool.commons.BaseEntity;
 
 @Entity
 @Table(name = "trainings")
-public class TrainingEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class TrainingEntity extends BaseEntity {
 
     private String title;
     private String description;
     private double price;
     private String cover;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;
@@ -55,3 +44,9 @@ public class TrainingEntity {
         this.cover = cover;
     }
 }
+
+// TODO: Ushtroj Optionals
+// TODO: Ushtroj queries te derivuara
+// TODO: Ushtroj
+// TODO: Kqyr Annotations per renditjen e attributeve ne postman me na dal mire.
+// TODO: Annotation qe me na bo set nje date per createdAt tek setat.
