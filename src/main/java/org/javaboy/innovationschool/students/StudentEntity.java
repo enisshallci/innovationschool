@@ -1,6 +1,7 @@
 package org.javaboy.innovationschool.students;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "students")
@@ -9,9 +10,12 @@ public class StudentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotNull
     private String firstName;
     private String lastName;
     private byte[] profilePicture;
+
     private String email;
     private String phoneNumber;
 

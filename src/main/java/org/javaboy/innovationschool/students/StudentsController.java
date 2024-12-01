@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 public class StudentsController {
@@ -34,6 +35,14 @@ public class StudentsController {
 
         return studentsRepository.save(studentEntity);
     }
+
+    @GetMapping(path = "/students", params = "name")        //tipi i metodes ne HTTP protokollin tone.
+    public Set<StudentEntity> findByName(@RequestParam String name) {
+
+        return studentsRepository.findByFirstNameStartingWithIgnoreCase(name);
+    }
+
+
 
 
 }
