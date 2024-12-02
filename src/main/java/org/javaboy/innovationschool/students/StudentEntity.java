@@ -8,10 +8,10 @@ import org.javaboy.innovationschool.commons.BaseEntity;
 @Table(name = "students")
 public class StudentEntity extends BaseEntity {
 
-    @NotNull
+    @NotNull(message = "firstname must not be null.")
     private String firstName;
 
-    @NotNull(message = "Last name must not be null")
+    @NotNull(message = "Last name must not be null.")
     private String lastName;
 
     private byte[] profilePicture;

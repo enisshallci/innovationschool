@@ -8,5 +8,5 @@ import java.util.Set;
 @Repository
 public interface TrainingsRepository extends JpaRepository<TrainingEntity, Long> {
 
-    Set<TrainingEntity> findByTitleIgnoreCase(String title);
+    Set<TrainingEntity> findByTitleStartingWithIgnoreCase(String title);
 }

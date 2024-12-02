@@ -71,3 +71,4 @@ public class TrainingEntity extends BaseEntity {
 // TODO: Ushtroj
 // TODO: Kqyr Annotations per renditjen e attributeve ne postman me na dal mire.
 // TODO: Annotation qe me na bo set nje date per createdAt tek setat.
+// TODO: Kur del te ResponseEntity kqyr do far URI location e ksi pervetesoj qato.

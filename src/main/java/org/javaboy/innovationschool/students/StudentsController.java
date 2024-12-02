@@ -18,6 +18,7 @@ public class StudentsController {
     }
 
     @GetMapping(path = "/students")
+    @ResponseStatus(HttpStatus.OK)
     public List<StudentEntity> findAll() {
 
         List<StudentEntity> studentEntities = studentsService.findAll();
@@ -26,6 +27,7 @@ public class StudentsController {
     }
 
     @GetMapping(path = "/students/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public StudentEntity getById(@PathVariable Long id) {
 
         return studentsService.findById(id).orElse(null);
@@ -39,6 +41,7 @@ public class StudentsController {
     }
 
     @GetMapping(path = "/students", params = "name")        //tipi i metodes ne HTTP protokollin tone.
+    @ResponseStatus(HttpStatus.OK)
     public Set<StudentEntity> findByName(@RequestParam String name) {
 
         return studentsService.findByName(name);
@@ -50,6 +53,7 @@ public class StudentsController {
         mu mbishkru me "null".
      */
     @PutMapping(path = "/students/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public StudentEntity update(@RequestBody StudentEntity studentEntity, @PathVariable Long id) {
 
         studentEntity.setId(id);

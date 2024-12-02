@@ -10,4 +10,6 @@ public interface TrainingsService {
     Optional<TrainingEntity> findById(Long id);
     Set<TrainingEntity> findByName(String title);
     TrainingEntity save(TrainingEntity trainingEntity);
+    TrainingEntity update(TrainingEntity trainingEntity);
+    void deleteById(Long id);
 }
