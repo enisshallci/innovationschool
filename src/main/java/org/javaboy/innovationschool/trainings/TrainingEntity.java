@@ -1,24 +1,22 @@
 package org.javaboy.innovationschool.trainings;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import org.javaboy.innovationschool.commons.BaseEntity;
 
 @Entity
 @Table(name = "trainings")
 public class TrainingEntity extends BaseEntity {
 
-    @NotNull(message = "Training title must be specified.")
+    @NotBlank(message = "Training title must be specified.")
     @Size(max = 150, message = "Title length must not exceed 150 characters.")
     private String title;
 
-    @NotNull(message = "Training description must be provided.")
+    @NotBlank(message = "Training description must be provided.")
     @Size(max = 600, message = "Description length must not exceed 150 characters.")
     private String description;
 
-    @NotNull(message = "Training price must be specified.")
+    @NotBlank(message = "Training price must be specified.")
     @Positive(message = "Training price must be greater than zero.")
     private double price;
     private String cover;
