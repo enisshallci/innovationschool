@@ -1,12 +1,14 @@
 package org.javaboy.innovationschool.students;
 
+import org.javaboy.innovationschool.students.commons.StudentMapper;
+import org.javaboy.innovationschool.students.models.StudentDto;
+import org.javaboy.innovationschool.students.models.StudentEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -95,6 +97,25 @@ public class StudentsServiceImpl implements StudentsService{
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Student with id: " + id + " not found.");
         }
+    }
+
+
+    @Override
+    public StudentDto partialUpdate(StudentDto studentDto, Long id) {
+
+        Optional<StudentEntity> studentEntityOptional = studentsRepository.findById(id);
+
+        if (studentEntityOptional.isPresent()) {
+
+            StudentEntity studentEntity = studentEntityOptional.get();
+            StudentMapper.mapDtoToEntity(studentDto, studentEntity);
+
+            StudentEntity patchedStudent = studentsRepository.save(studentEntity);
+
+            return StudentMapper.mapEntityToDto(patchedStudent);
+        }
+
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Student with id: " + id + " not found.");
     }
 
 }

@@ -1,5 +1,6 @@
 package org.javaboy.innovationschool.students;
 
+import org.javaboy.innovationschool.students.models.StudentEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
