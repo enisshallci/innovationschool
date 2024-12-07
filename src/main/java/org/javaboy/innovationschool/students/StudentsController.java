@@ -1,5 +1,7 @@
 package org.javaboy.innovationschool.students;
 
+import org.javaboy.innovationschool.students.models.StudentDto;
+import org.javaboy.innovationschool.students.models.StudentEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -64,5 +66,12 @@ public class StudentsController {
         studentsService.deleteById(id);
     }
 
+
+    @PatchMapping(path = "/students/{id}")
+    public StudentDto partialUpdate(@RequestBody StudentDto studentDto, @PathVariable Long id) {
+
+        studentDto.setId(id);
+        return studentsService.partialUpdate(studentDto, id);
+    }
 
 }
