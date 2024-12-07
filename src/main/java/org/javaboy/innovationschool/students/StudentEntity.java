@@ -1,17 +1,17 @@
 package org.javaboy.innovationschool.students;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import org.javaboy.innovationschool.commons.BaseEntity;
 
 @Entity
 @Table(name = "students")
 public class StudentEntity extends BaseEntity {
 
-    @NotNull(message = "firstname must not be null.")
+    @NotBlank(message = "First Name cannot be blank. Please provide a valid value.")
     private String firstName;
 
-    @NotNull(message = "Last name must not be null.")
+    @NotBlank(message = "Last Name cannot be blank. Please provide a valid value.")
     private String lastName;
 
     private byte[] profilePicture;
