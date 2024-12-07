@@ -1,17 +1,17 @@
-package org.javaboy.innovationschool.students;
+package org.javaboy.innovationschool.students.models;
 
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import org.javaboy.innovationschool.commons.BaseEntity;
+import jakarta.validation.constraints.Pattern;
+import org.javaboy.innovationschool.commons.BaseDto;
 
-@Entity
-@Table(name = "students")
-public class StudentEntity extends BaseEntity {
+public class StudentDto extends BaseDto {
 
-    @NotBlank(message = "First Name cannot be blank. Please provide a valid value.")
+//    @NotBlank(message = "First Name cannot be blank. Please provide a valid value.")
+//    @Pattern(regexp = "^[a-zA-Z]+$", message = "First Name must only contain letters")
     private String firstName;
 
-    @NotBlank(message = "Last Name cannot be blank. Please provide a valid value.")
+//    @NotBlank(message = "Last Name cannot be blank. Please provide a valid value.")
+//    @Pattern(regexp = "^[a-zA-Z]+$", message = "Last Name must only contain letters")
     private String lastName;
 
     private byte[] profilePicture;
@@ -57,5 +57,4 @@ public class StudentEntity extends BaseEntity {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
 }
