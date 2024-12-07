@@ -1,6 +1,7 @@
 package org.javaboy.innovationschool.students;
 
 import org.javaboy.innovationschool.students.commons.StudentMapper;
+import org.javaboy.innovationschool.students.commons.StudentMapperNew;
 import org.javaboy.innovationschool.students.models.StudentDto;
 import org.javaboy.innovationschool.students.models.StudentEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import java.util.Set;
 public class StudentsServiceImpl implements StudentsService{
 
     private StudentsRepository studentsRepository;
+    private StudentMapperNew studentMapperNew;
 
     @Autowired
     public StudentsServiceImpl(StudentsRepository studentsRepository) {
@@ -108,7 +110,8 @@ public class StudentsServiceImpl implements StudentsService{
         if (studentEntityOptional.isPresent()) {
 
             StudentEntity studentEntity = studentEntityOptional.get();
-            StudentMapper.mapDtoToEntity(studentDto, studentEntity);
+//            StudentMapper.mapDtoToEntity(studentDto, studentEntity);
+            studentMapperNew.mapDtoToEntity(studentDto, studentEntity);
 
             StudentEntity patchedStudent = studentsRepository.save(studentEntity);
 
