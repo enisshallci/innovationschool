@@ -5,35 +5,43 @@ import org.javaboy.innovationschool.students.models.StudentEntity;
 
 public class StudentMapper {
 
-    public static void mapDtoToEntity(StudentDto studentDto, StudentEntity studentEntity) {
+    public static void mapDtoToEntity(StudentDto source, StudentEntity target) {
 
-        if (studentDto.getId() != null) {       //bone edhe per blank qitu sahora.
-            studentEntity.setId(studentDto.getId());
+        if (source == null) {
+            return;
         }
 
-        if (studentDto.getFirstName() != null) {
-            studentEntity.setFirstName(studentDto.getFirstName());
+        if (source.getId() != null) {
+            target.setId(source.getId());
         }
 
-        if (studentDto.getLastName() != null) {
-            studentEntity.setLastName(studentDto.getLastName());
+        if (source.getFirstName() != null) {
+            target.setFirstName(source.getFirstName());
         }
 
-        if (studentDto.getEmail() != null) {
-            studentEntity.setEmail(studentDto.getEmail());
+        if (source.getLastName() != null) {
+            target.setLastName(source.getLastName());
         }
 
-        if (studentDto.getPhoneNumber() != null) {
-            studentEntity.setPhoneNumber(studentDto.getPhoneNumber());
+        if (source.getEmail() != null) {
+            target.setEmail(source.getEmail());
         }
 
-        if (studentDto.getProfilePicture() != null) {
-            studentEntity.setProfilePicture(studentDto.getProfilePicture());
+        if (source.getPhoneNumber() != null) {
+            target.setPhoneNumber(source.getPhoneNumber());
+        }
+
+        if (source.getProfilePicture() != null) {
+            target.setProfilePicture(source.getProfilePicture());
         }
     }
 
 
     public static StudentDto mapEntityToDto(StudentEntity studentEntity) {
+
+        if (studentEntity == null) {
+            return null;
+        }
 
         StudentDto studentDto = new StudentDto();
 

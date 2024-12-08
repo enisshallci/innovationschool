@@ -15,14 +15,15 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
-public class StudentsServiceImpl implements StudentsService{
+public class StudentsServiceImpl implements StudentsService {
 
     private StudentsRepository studentsRepository;
     private StudentMapperNew studentMapperNew;
 
     @Autowired
-    public StudentsServiceImpl(StudentsRepository studentsRepository) {
+    public StudentsServiceImpl(StudentsRepository studentsRepository, StudentMapperNew studentMapperNew) {
         this.studentsRepository = studentsRepository;
+        this.studentMapperNew = studentMapperNew;
     }
 
     @Override
@@ -113,6 +114,9 @@ public class StudentsServiceImpl implements StudentsService{
 //            StudentMapper.mapDtoToEntity(studentDto, studentEntity);
             studentMapperNew.mapDtoToEntity(studentDto, studentEntity);
 
+            studentEntity.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+            studentEntity.setUpdatedBy(1L);
+
             StudentEntity patchedStudent = studentsRepository.save(studentEntity);
 
             return StudentMapper.mapEntityToDto(patchedStudent);
@@ -125,3 +129,4 @@ public class StudentsServiceImpl implements StudentsService{
 
 
 //TODO: provo ma shume metoda ushtro, p.sh existsById();
+//TODO: Lexo per mapStruct ma shume. Ushtrro pak, manipulo.
