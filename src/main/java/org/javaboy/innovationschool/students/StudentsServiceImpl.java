@@ -130,3 +130,4 @@ public class StudentsServiceImpl implements StudentsService {
 
 //TODO: provo ma shume metoda ushtro, p.sh existsById();
 //TODO: Lexo per mapStruct ma shume. Ushtrro pak, manipulo.
+//TODO: Do far teorija boni download nga discord.

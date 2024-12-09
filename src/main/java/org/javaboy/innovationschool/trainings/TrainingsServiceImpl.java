@@ -1,5 +1,7 @@
 package org.javaboy.innovationschool.trainings;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -71,5 +73,11 @@ public class TrainingsServiceImpl implements TrainingsService {
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Training with id " + id + " not found.");
         }
+    }
+
+    @Override
+    public Page<TrainingEntity> findAllPageable(Pageable pageable) {       //16
+
+        return trainingsRepository.findAllByDeletedAtIsNull(pageable);
     }
 }

@@ -1,10 +1,15 @@
 package org.javaboy.innovationschool.trainings;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @RestController
@@ -58,6 +63,30 @@ public class TrainingsController {
     public void delete(@PathVariable Long id) {
 
         trainingService.deleteById(id);
+    }
+
+    @GetMapping(path = "/trainings", params = {"page", "size"})     //16
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<?> findAllPageable(Pageable pageable) {
+
+        Page<TrainingEntity> trainingEntityPage = trainingService.findAllPageable(pageable);
+
+        return ResponseEntity.ok(convertPageToCustomResponse(trainingEntityPage));
+    }
+
+    private Map<String, Object> convertPageToCustomResponse(Page<TrainingEntity> page) {
+
+        Map<String, Object> response = new HashMap<>();
+
+        response.put("trainings", page.getContent());       //
+        response.put("current-page", page.getNumber());
+        response.put("total-items", page.getTotalElements());
+        response.put("total-pages", page.getTotalPages());
+        response.put("last-page", page.isLast());
+
+        //TODO: Custom Response "16".
+
+        return response;
     }
 
 }

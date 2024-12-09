@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Pattern;
 import org.javaboy.innovationschool.commons.BaseDto;
 
 public class StudentDto extends BaseDto {
-
+    //The validation annotations (@NotBlank, @NotNull, etc.) only check the value of fields if they are present in the request payload.
     @NotBlank(message = "First Name cannot be blank. Please provide a valid value.")
     @NotNull(message = "First name cannot be null")
     @Pattern(regexp = "^[a-zA-Z]+$", message = "First Name must only contain letters")
