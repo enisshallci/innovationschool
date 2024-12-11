@@ -1,6 +1,7 @@
 package org.javaboy.innovationschool.exceptions;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -14,7 +15,11 @@ public class ExceptionAdvice {
         return new ApiModel(HttpStatus.NOT_FOUND, ex.getMessage());
     }
 
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    ApiModel handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
 
+        return new ApiModel(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
 }
 
 
