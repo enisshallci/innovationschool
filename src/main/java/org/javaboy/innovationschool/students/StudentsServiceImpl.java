@@ -63,12 +63,16 @@ public class StudentsServiceImpl implements StudentsService {
 
 
     @Override
-    public StudentEntity save(StudentEntity studentEntity) {
+    public StudentEntity save(StudentDto studentDto) {
+
+        StudentEntity studentEntity = new StudentEntity();
 
         studentEntity.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         studentEntity.setCreatedBy(1L);
         studentEntity.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
         studentEntity.setUpdatedBy(1L);
+
+        studentMapperNew.mapDtoToEntity(studentDto, studentEntity);
 
         return studentsRepository.save(studentEntity);
     }

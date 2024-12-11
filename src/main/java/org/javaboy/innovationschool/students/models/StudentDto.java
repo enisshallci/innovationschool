@@ -24,6 +24,7 @@ public class StudentDto extends BaseDto {
     private String email;
 
     @Pattern(regexp = "^\\d{3}-\\d{3}-\\d{3}$", message = "Phone number must be in the format NNN-NNN-NNN")
+    @NotBlank(message = "Last Name cannot be blank. Please provide a valid value.")
     private String phoneNumber;
 
     public String getFirstName() {

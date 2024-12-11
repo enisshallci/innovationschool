@@ -38,9 +38,9 @@ public class StudentsController {
 
     @PostMapping(path = "/students")
     @ResponseStatus(HttpStatus.CREATED)
-    public StudentEntity save(@Valid @RequestBody StudentEntity studentEntity) {
+    public StudentEntity save(@Valid @RequestBody StudentDto studentDto) {
 
-        return studentsService.save(studentEntity);
+        return studentsService.save(studentDto);
     }
 
     @GetMapping(path = "/students", params = "name")

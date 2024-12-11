@@ -11,7 +11,7 @@ public interface StudentsService {
 
     List<StudentEntity> findAll();
     Optional<StudentEntity> findById(Long id);
-    StudentEntity save(StudentEntity studentEntity);
+    StudentEntity save(StudentDto studentDto);
     StudentEntity update(StudentEntity studentEntity);
     Set<StudentEntity> findByName(String name);
     void deleteById(Long id);
