@@ -1,5 +1,6 @@
 package org.javaboy.innovationschool.students;
 
+import jakarta.validation.Valid;
 import org.javaboy.innovationschool.students.models.StudentDto;
 import org.javaboy.innovationschool.students.models.StudentEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class StudentsController {
 
     @PostMapping(path = "/students")
     @ResponseStatus(HttpStatus.CREATED)
-    public StudentEntity save(@RequestBody StudentEntity studentEntity) {
+    public StudentEntity save(@Valid @RequestBody StudentEntity studentEntity) {
 
         return studentsService.save(studentEntity);
     }
