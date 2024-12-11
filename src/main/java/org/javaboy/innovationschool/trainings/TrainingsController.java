@@ -84,9 +84,11 @@ public class TrainingsController {
         response.put("total-pages", page.getTotalPages());
         response.put("last-page", page.isLast());
 
-        //TODO: Custom Response "16".
+        // TODO: Custom Response "16".
 
         return response;
     }
 
 }
+
+
