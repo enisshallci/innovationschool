@@ -1,5 +1,6 @@
 package org.javaboy.innovationschool.exceptions;
 
+import org.javaboy.innovationschool.exceptions.model.ApiError;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -10,15 +11,15 @@ public class ExceptionAdvice {
     //Krejt exceptions qe kalojne kah controllers te serverit ton, kane me ardhë ne kete klase.
 
     @ExceptionHandler(CustomNotFoundException.class)
-    ApiModel handleCustomNotFoundException(CustomNotFoundException ex) {
+    ApiError handleCustomNotFoundException(CustomNotFoundException ex) {
 
-        return new ApiModel(HttpStatus.NOT_FOUND, ex.getMessage());
+        return new ApiError(HttpStatus.NOT_FOUND, ex.getMessage());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    ApiModel handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
+    ApiError handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
 
-        return new ApiModel(HttpStatus.NOT_FOUND, ex.getMessage());
+        return new ApiError(HttpStatus.NOT_FOUND, ex.getMessage());
     }
 }
 

@@ -1,4 +1,4 @@
-package org.javaboy.innovationschool.exceptions;
+package org.javaboy.innovationschool.exceptions.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.http.HttpStatus;
@@ -7,21 +7,22 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
-public class ApiModel {
+public class ApiError {
 
     private HttpStatus status;
     private List<String> errors;
 
+    //Qysh me kthy tek klienti.
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private LocalDateTime timestamp;
 
-    public ApiModel(HttpStatus status, List<String> errors) {
+    public ApiError(HttpStatus status, List<String> errors) {
         this.status = status;
         this.errors = errors;
         this.timestamp = LocalDateTime.now();
     }
 
-    public ApiModel(HttpStatus status, String error) {
+    public ApiError(HttpStatus status, String error) {
         this.status = status;
         this.errors = Collections.singletonList(error);
         this.timestamp = LocalDateTime.now();
@@ -50,4 +51,5 @@ public class ApiModel {
     public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
     }
+
 }

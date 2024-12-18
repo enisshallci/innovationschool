@@ -3,6 +3,10 @@ package org.javaboy.innovationschool.trainings;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import org.javaboy.innovationschool.commons.BaseEntity;
+import org.javaboy.innovationschool.trainings.subjects.SubjectEntity;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "trainings")
@@ -21,14 +25,14 @@ public class TrainingEntity extends BaseEntity {
     private double price;
     private String cover;
 
+    @OneToMany(mappedBy = "training", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)   //i tregojna cila fushe e menaxhon kete relacion.
+    private Set<SubjectEntity> subjects = new HashSet<>();
+
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
-        if (title == null || title.length() > 150) {
-            throw new IllegalArgumentException("Title must not be null and should not exceed 150 characters.");
-        }
         this.title = title;
     }
 
@@ -46,12 +50,6 @@ public class TrainingEntity extends BaseEntity {
     }
 
     public void setPrice(double price) {
-
-        String priceStr = String.valueOf(price);
-        if (priceStr.contains(".") && priceStr.split("\\.")[1].length() > 2) {
-            throw new IllegalArgumentException("Price must have at most 2 decimal places.");
-        }
-
         this.price = price;
     }
 
@@ -62,11 +60,19 @@ public class TrainingEntity extends BaseEntity {
     public void setCover(String cover) {
         this.cover = cover;
     }
+
+    public Set<SubjectEntity> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(Set<SubjectEntity> subjects) {
+        this.subjects = subjects;
+    }
 }
 
-// TODO: Ushtroj Optionals
-// TODO: Ushtroj queries te derivuara
-// TODO: Ushtroj
-// TODO: Kqyr Annotations per renditjen e attributeve ne postman me na dal mire.
+
+
+
+
 // TODO: Annotation qe me na bo set nje date per createdAt tek setat.
 // TODO: Kur del te ResponseEntity kqyr do far URI location e ksi pervetesoj qato.

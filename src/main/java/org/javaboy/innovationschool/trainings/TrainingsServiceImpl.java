@@ -22,7 +22,7 @@ public class TrainingsServiceImpl implements TrainingsService {
     @Override
     public List<TrainingEntity> findAll() {
 
-        List<TrainingEntity> trainingEntities = trainingsRepository.findAll();
+        List<TrainingEntity> trainingEntities = trainingsRepository.findAllByDeletedAtIsNull();
         if (trainingEntities.isEmpty())
         {
             throw new ResponseStatusException(HttpStatus.NO_CONTENT, "The list of trainings is null.");

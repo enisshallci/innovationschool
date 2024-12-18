@@ -1,5 +1,7 @@
 package org.javaboy.innovationschool.commons;
 
+import jakarta.validation.constraints.FutureOrPresent;
+
 import java.sql.Timestamp;
 
 public class BaseDto {
@@ -7,11 +9,20 @@ public class BaseDto {
         Shkruaj validations.
      */
     private Long id;
+
+    @FutureOrPresent(message = "The value of the field or property must be a date or time in present or future.")
     private Timestamp createdAt;
+
     private Long createdBy;
+
+    @FutureOrPresent(message = "The value of the field or property must be a date or time in present or future.")
     private Timestamp updatedAt;
+
     private Long updatedBy;
+
+    @FutureOrPresent(message = "The value of the field or property must be a date or time in present or future.")
     private Timestamp deletedAt;
+
     private Long deletedBy;
 
     public Long getId() {

@@ -1,10 +1,14 @@
 package org.javaboy.innovationschool.students;
 
+import org.javaboy.innovationschool.exceptions.CustomNotFoundException;
 import org.javaboy.innovationschool.students.commons.StudentMapper;
 import org.javaboy.innovationschool.students.commons.StudentMapperNew;
 import org.javaboy.innovationschool.students.models.StudentDto;
 import org.javaboy.innovationschool.students.models.StudentEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -106,7 +110,6 @@ public class StudentsServiceImpl implements StudentsService {
         }
     }
 
-
     @Override
     public StudentDto partialUpdate(StudentDto studentDto, Long id) {
 
@@ -128,6 +131,45 @@ public class StudentsServiceImpl implements StudentsService {
 
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Student with id: " + id + " not found.");
     }
+
+    @Override
+    public Page<StudentDto> findAllPageable(Pageable pageable) {
+
+        Page<StudentEntity> studentEntityPage = studentsRepository.findAllByDeletedAtIsNull(pageable);
+
+        return studentMapperNew.mapPageEntitiesToPageDtos(studentEntityPage);
+    }
+
+    /*
+     Ushtrimet e Enisit:
+    __________________________________________________________________________________________________________________
+     */
+
+    @Override
+    public void deleteStudent(StudentDto studentDto) {
+
+        StudentEntity studentEntity = new StudentEntity();
+
+        studentMapperNew.mapDtoToEntity(studentDto, studentEntity);
+
+        if (findById(studentEntity.getId()).isPresent()) {
+            studentsRepository.delete(studentEntity);
+        } else {
+            throw new CustomNotFoundException("Entity with this id is not found.");
+        }
+    }
+
+    //Sort:
+    @Override
+    public List<StudentDto> getSortedStudents(String sortBy, String direction) {
+
+        Sort sort = Sort.by(Sort.Direction.fromString(direction), sortBy);
+
+        return studentMapperNew.mapEntitiesToDtos(studentsRepository.findAll(sort));
+    }
+
+    //Pagination and Sort:
+
 
 }
 

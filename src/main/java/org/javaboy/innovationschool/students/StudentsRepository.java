@@ -1,6 +1,8 @@
 package org.javaboy.innovationschool.students;
 
 import org.javaboy.innovationschool.students.models.StudentEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,5 +15,7 @@ public interface StudentsRepository extends JpaRepository<StudentEntity, Long> {
     Set<StudentEntity> findByFirstNameStartingWithIgnoreCaseAndDeletedAtIsNull(String name);    //metode e derivuar.
 
     List<StudentEntity> findAllByDeletedAtIsNull();
+
+    Page<StudentEntity> findAllByDeletedAtIsNull(Pageable pageable);
 
 }
